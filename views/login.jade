@@ -1,0 +1,28 @@
+extends layout
+
+block body
+	div(id="app")
+	div(id="example")
+	div(id="like-container")
+	div(class="devint")
+		header(id="devint-head")
+			h1 Dev Interactive - logon
+		div(class="start login")
+			div(class="container single-inst")
+				div(class="row")
+					//
+					div(class="col-md-3 di-col-xs-0 col-sm-2 col-lg-4")
+						//
+							img(class="dev-logo", src="img/logo.png")
+					div(class="col-md-6 di-col-xs-12 col-sm-8  col-lg-4 form-wrapper")
+						div(class="social-login devint-form")
+							a(class="btn btn-block btn-social btn-lg btn-github", href="/login/github")
+								i(class="fa fa-github") Sign in with Github
+						div(class="local-login devint-form", id="devint-login-form")
+							
+						
+					div(class="col-md-3 di-col-xs-0 col-sm-2 col-lg-4")
+	script
+		document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')
+	script(src='vendors.js')
+	script(src='main.js')

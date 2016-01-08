@@ -1,0 +1,14 @@
+body {
+	background: @color_pink_dark_dirt;
+}
+//
+
+.page-outer {
+	//
+	.transit(opacity, 0.5s);
+	.opaque(0, 0);
+
+	&.is-loaded {
+		.opaque(100, 1);
+	}
+}

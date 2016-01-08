@@ -5,11 +5,11 @@
 var flash = require('express-flash');
 
 exports.index = function(req, res){
-	res.render('index');
+	res.render('index', {"pagedata": {"cname": "appview"}});
 };
 
 exports.login = function (req, res) {
-	res.render('login', {"message": req.flash('error')});
+	res.render('login', {"message": req.flash('error'), "pagedata": {"cname": "loginview"}});
 };
 
 exports.error = function(req, res){

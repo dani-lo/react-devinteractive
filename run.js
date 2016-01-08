@@ -219,7 +219,6 @@ app.get("/app*", appUtil.ensureAuthenticated, views.index);
 
 app.get("/", function (req, res) {
   "use strict";
-  console.log("rooooooooooot ---------------")
   res.redirect("/app");
 });
 

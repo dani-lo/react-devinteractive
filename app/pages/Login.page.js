@@ -11,10 +11,9 @@ function LoginPage (options) {
 	this.title = options.title || null;
 }
 //
-LoginPage.prototype.render = function () {
+LoginPage.prototype.mount = function () {
 	//
 	var domLoginFormTarget = document.getElementById('devint-login-form');
-
 	//
 	ReactDOM.render(<LoginForm/>, domLoginFormTarget);
 }

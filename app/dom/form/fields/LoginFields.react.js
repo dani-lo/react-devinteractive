@@ -17,7 +17,7 @@ var LoginFields = React.createClass({
 	},
 	//
 	render: function() {
-	//
+		//
 		var inputClass = {
 			email: classNames({
 				"from-input": "true",
@@ -43,7 +43,7 @@ var LoginFields = React.createClass({
 					<input type="password" className={inputClass.password} placeholder="Password"  defaultValue={this.props.fieldValues.password} onChange={this.validate.bind(this, "password")} />
 				</li>
 				<li className="form-footer">
-					<button className="btn-primary pull-right">Come On In</button>
+					<input type="submit" className="btn" value="Come On In" />
 				</li>
 			</ul>
 		</div>
@@ -72,10 +72,6 @@ var LoginFields = React.createClass({
 		
 			this.props.onFieldValid(field, null);
 		}
-	},
-	submit: function (form, e) {
-		//
-		return this.props.onFormSubmit();
 	}
 });
 

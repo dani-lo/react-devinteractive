@@ -86,6 +86,11 @@ class RDCollect {
 
 		return deferred;
 	}
-}
+	//
+	flatten () {
+		//
+		return this.dataset.toJSON();
+	}
+ }
 
 module.exports = RDCollect;

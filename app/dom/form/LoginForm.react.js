@@ -8,7 +8,8 @@ var React     	= require('react'),
 	assign  	= require('object-assign');
 
 var	rdConf 		= require("../../lib/RDConfig"),
-	rdCollect 	= require("../../lib/RDCollect");
+	rdCollect 	= require("../../lib/RDCollect"),
+	rdHub 		= require("../../lib/RDHub");
 
 var	LoginFields	= require('./fields/LoginFields.react'),
 	AppModal	= require('../widget/Modal.widget');
@@ -66,6 +67,11 @@ var LoginForm = React.createClass({
 				if (logonModel.get("status") === "success") {
 					// login failed
 					AppModal.setText("Login successful, you are being redirected").setType("success").show(true);
+					//
+					setTimeout(function () {
+						//Router.navigate('/about');
+						rdHub.appRouter.hard("/app/home");
+					}, 2000);
 				} else {
 					// login ok
 					AppModal.setText("Something went wrong, please try again.").setType("error").show(true);
@@ -74,7 +80,7 @@ var LoginForm = React.createClass({
 
 			function onLoginError (err) {
 				//
-				console.log(err);
+				AppModal.setText("Something went wrong, please try again.").setType("error").show(true);
 			}
 
 			this.collection.persist(logonModel).then(onLoginSuccess, onLoginError);

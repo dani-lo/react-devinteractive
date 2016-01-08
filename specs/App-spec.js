@@ -1,4 +1,4 @@
-var App = require('./../app/dom/page/Login.page'),
+var App = require('./../app/pages/Login.page'),
 	React = require('react/addons'),
 	TestUtils = React.addons.TestUtils;
 

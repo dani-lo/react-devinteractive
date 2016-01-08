@@ -2,8 +2,11 @@ extends layout
 
 block body
 
-	div(ng-view)
-        
+	div
+		div(id="page-outer-home", class="page-outer")
+			div(id="devint-home-navigation")
+		div(id="devint-cv")
+		div(id="devint-xp")
 	script
 		document.write("<script src=\"http://" + (location.host || "localhost").split(':')[0] + ":35729/livereload.js?snipver=1\"></" + "script>");
 	script(src='vendors.js')

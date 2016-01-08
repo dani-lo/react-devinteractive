@@ -1,20 +1,80 @@
 (function () {
-	var Router = require("./util/router");
+	var RDHub = require("./lib/RDHub");
 	//
-	var LoginPage = require("./pages/Login.page");
+	var LoginPage 	= require("./pages/Login.page"),
+		CvPage		= require("./pages/Cv.page"),
+		XpPage		= require("./pages/Xp.page"),
+		HomePage 	= require("./pages/Home.page");
+
+	var AppHeader	= require('./dom/widget/Header.widget');
 	//
+	function appDefaultRouteAction () {
+		//
+		console.log("DevInteractive default");
+	}
+
 	function loginRouteAction () {
 		//
 		var pageLogin = new LoginPage({
 			title: "Dev Interactive Login Page"
 		});
-
-		pageLogin.render();
+		pageLogin.mount();
 	}
 
-	var appRouter = new Router();
+	function appHomeRouteAction () {
+		//
+		var pageHome = new HomePage({
+			title: "Dev Interactive Home Page"
+		});
 
-	appRouter.addRoute("login", loginRouteAction);
+		RDHub.unmountCurrentPageView()
+			 .setCurrentPageView(pageHome);
 
-	appRouter.startRouter();
+		pageHome.mount();
+	}
+
+	function appCvRouteAction () {
+		//
+		var pageCv = new CvPage({
+			title: "Dev Interactive Cv Page"
+		});
+
+		RDHub.unmountCurrentPageView()
+			 .setCurrentPageView(pageCv);
+
+		pageCv.mount();
+	}
+
+	function appExperienceRouteAction () {
+		//
+		var pageXp = new XpPage({
+			title: "Dev Interactive Experience Page"
+		});
+
+		RDHub.unmountCurrentPageView()
+			 .setCurrentPageView(pageXp);
+
+		pageXp.mount();
+	}
+
+	function appDefaultRouteAction () {
+		//
+		console.log("DEFAULT");
+	}
+
+	// adding routes
+	RDHub.appRouter.setOnRouteChange(function () {
+		//
+		RDHub.invokeListener("onappnavigate", {});
+	});
+
+	RDHub.appRouter.add(/login/, loginRouteAction)
+					.add(/app\/home/, appHomeRouteAction)
+					.add(/app\/experience/, appExperienceRouteAction)
+					.add(/app\/cv/, appCvRouteAction)
+					.add(appDefaultRouteAction) // default
+					.check()
+					.listen();
+
+
 })();

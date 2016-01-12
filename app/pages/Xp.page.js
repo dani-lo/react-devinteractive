@@ -1,4 +1,4 @@
-/** @jsx React.DOM */
+"use strict";
 //
 var React 		= require('react'),
 	ReactDOM 	= require('react-dom');
@@ -12,31 +12,40 @@ var XpList 		= require('../dom/list/ListXp.react');
 *
 *
 */
-function XpPage (options) {
-	//
-	this.title = options.title || null;
-	//
-	this.collection =  new RDCollect({
-		url: RDConf.api.xp.url
-	});
-}
-//
-XpPage.prototype.mount = function () {
-	//
-	var domXp = document.getElementById('devint-xp');
+class XpPage {
 
-	this.collection.retrieve().then(() => {
+	constructor () {
 		//
-		ReactDOM.render(<XpList xp={this.collection.flatten()} />, domXp);
-	});
-	
-}
-//
-XpPage.prototype.unmount = function () {
+		this.title = options.title || null;
+		//
+		this.collection =  new RDCollect({
+			url: RDConf.api.xp.url
+		});
+
+		this.outer = document.getElementById("devint-xp");
+	}
 	//
-	var domXp = document.getElementById('devint-xp');
+	mount () {
+		//
+		this.collection.retrieve().then(() => {
+			//
+			ReactDOM.render(<XpList xp={this.collection.flatten()} />, this.outer);
+		});
+		
+		this.postRender();
+	}
 	//
-	ReactDOM.unmountComponentAtNode(domXp);
+	postRender () {
+		//
+		setTimeout(function () {
+			this.outer.className = "page-outer is-loaded";
+		}.bind(this), 100);
+	}
+	//
+	unmount () {
+		//
+		ReactDOM.unmountComponentAtNode(this.outer);
+	}
 }
 //
 module.exports = XpPage;

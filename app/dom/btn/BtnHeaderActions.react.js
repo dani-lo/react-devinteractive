@@ -17,15 +17,16 @@ var BtnHeaderActions= React.createClass({
 		//
 		RDHub.registerListener("onappnavigate", function (options) {
 			//
-			this.setState({activeBackBtn: true});
+			this.setState({activeBackBtn: options.path.indexOf("home") === -1});
+			
 		}.bind(this));
 	},
 	//
-	goToBack: function(ev) {
+	goToHome: function(ev) {
 		//
 		ev.preventDefault();
 
-		RDHub.appRouter.goback();
+		RDHub.appRouter.navigate("/app/home");
 	},
 	//
 	goToLogout: function(ev) {
@@ -44,7 +45,7 @@ var BtnHeaderActions= React.createClass({
 
 		return (
 			<p className="header-btn">
-				<a className={btnBackClassname} href="#_" onClick={this.goToBack}>Back</a>
+				<a className={btnBackClassname} href="#_" onClick={this.goToHome}>Home</a>
 				<a className="btn" href="#_" onClick={this.goToLogout}>Logout</a>
 			</p>
 		);

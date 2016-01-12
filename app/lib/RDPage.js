@@ -1,3 +1,5 @@
+"use strict";
+
 var React = require('react'),
 	ReactDOM = require('react-dom');
 /////////////////
@@ -5,20 +7,24 @@ class RDPage {
 	//
 	constructor (options) {
 		//
-		this.component = {};
-
-		this.baseView = null;
+		this.outer = options.outer || null;
+		//
+		this.title = options.title || null;
 
 		return this;
 	}
 	//
-	load () {
+	postRender () {
 		//
+		setTimeout(function () {
+			this.outer.className = "page-outer is-loaded";
+		}.bind(this), 100);
 	}
 	//
-	unload () {
-		
+	unmount () {
+		//
+		ReactDOM.unmountComponentAtNode(this.outer);
 	}
 }
 
-module.exports = RDBridge;
+module.exports = RDPage;

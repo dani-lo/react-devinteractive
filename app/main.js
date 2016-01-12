@@ -36,7 +36,8 @@
 	function appCvRouteAction () {
 		//
 		var pageCv = new CvPage({
-			title: "Dev Interactive Cv Page"
+			title: "Dev Interactive Cv Page",
+			outer: document.getElementById("devint-cv")
 		});
 
 		RDHub.unmountCurrentPageView()
@@ -63,9 +64,9 @@
 	}
 
 	// adding routes
-	RDHub.appRouter.setOnRouteChange(function () {
+	RDHub.appRouter.setOnRouteChange(function (path) {
 		//
-		RDHub.invokeListener("onappnavigate", {});
+		RDHub.invokeListener("onappnavigate", {path: path});
 	});
 
 	RDHub.appRouter.add(/login/, loginRouteAction)

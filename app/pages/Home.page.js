@@ -1,34 +1,37 @@
-/** @jsx React.DOM */
+"use strict";
 //
 var React = require('react'),
 	ReactDOM = require('react-dom');
 //
 var HomeBtnActions = require('../dom/btn/BtnHomeActions.react');
 
-function HomePage (options) {
+class HomePage {
 	//
-	this.title = options.title || null;
+	constructor (options) {
+		//
+		this.title = options.title || null;
 
-	this.outer = document.getElementById("page-outer-home");
-}
-//
-HomePage.prototype.mount = function () {
+		this.outer = document.getElementById("devint-home");
+	}
 	//
-	var domHomeNavigation = document.getElementById('devint-home-navigation');
+	mount () {
+		//
+		ReactDOM.render(<HomeBtnActions/>, this.outer);
+		
+		this.postRender();
+	}
 	//
-	ReactDOM.render(<HomeBtnActions/>, domHomeNavigation);
+	postRender () {
+		//
+		setTimeout(function () {
+			this.outer.className = "page-outer is-loaded";
+		}.bind(this), 100);
+	}
 	//
-	setTimeout(function () {
-		this.outer.className = "page-outer is-loaded";
-	}.bind(this), 100);
-	
-}
-//
-HomePage.prototype.unmount = function () {
-	//
-	var domHomeNavigation = document.getElementById('devint-home-navigation');
-	//
-	ReactDOM.unmountComponentAtNode(domHomeNavigation);
+	unmount () {
+		//
+		ReactDOM.unmountComponentAtNode(this.outer);
+	}
 }
 //
 module.exports = HomePage;

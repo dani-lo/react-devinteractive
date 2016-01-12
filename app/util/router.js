@@ -2,6 +2,7 @@
 var Router = {
     routes: [],
     mode: null,
+    status: "IDLE",
     root: '/',
     prevUrl: null,
     config: function(options) {
@@ -62,9 +63,11 @@ var Router = {
                 return this;
             }           
         }
+
         return this;
     },
     listen: function() {
+        //
         var self = this,
             current = self.getFragment(),
             fn = function() {
@@ -77,6 +80,14 @@ var Router = {
 
         clearInterval(this.interval);
         this.interval = setInterval(fn, 50);
+
+        if (this.status === "IDLE") {
+            //
+            this.onRuteChange(current);
+
+            this.status = "RUN";
+        }
+
         return this;
     },
     navigate: function(path) {
@@ -87,7 +98,7 @@ var Router = {
 
         if (this.onRuteChange) {
             //
-            this.onRuteChange();
+            this.onRuteChange(path);
         }
 
         if(this.mode === 'history') {

@@ -1,4 +1,4 @@
-/** @jsx React.DOM */
+"use strict";
 //
 var React = require('react'),
 	ReactDOM = require('react-dom');
@@ -6,16 +6,19 @@ var React = require('react'),
 var LoginForm = require('../dom/form/LoginForm.react');
 //
 //
-function LoginPage (options) {
+class LoginPage {
 	//
-	this.title = options.title || null;
-}
-//
-LoginPage.prototype.mount = function () {
+	constructor (options) {
+		this.title = options.title || null;
+	}
 	//
-	var domLoginFormTarget = document.getElementById('devint-login-form');
-	//
-	ReactDOM.render(<LoginForm/>, domLoginFormTarget);
+	mount () {
+		//
+		var domLoginFormTarget = document.getElementById('devint-login-form');
+		//
+		ReactDOM.render(<LoginForm/>, domLoginFormTarget);
+	}
+	
 }
 //
 module.exports = LoginPage;

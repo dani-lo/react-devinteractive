@@ -16,11 +16,10 @@ var ListCv= React.createClass({
 				return <li>
 					<h3>{dItem.title}</h3>
 					<h4>{dItem.company}</h4>
-					<p className="cv-list_date">{dItem.date}</p>
 					<p className="cv-list_tech">{dItem.tech}</p>
 					<p>{dItem.description}</p>
-					<ul>{
-						Array(dItem.images).fill().map((x,i)=>i)
+					<ul className="item-img">{
+						Array(dItem.images).fill().map((x,i)=><li><img src={"/img/" + dItem.alias + "/" + (i + 1) + ".png"} /></li>)
 					}</ul>
 				</li>
 			});

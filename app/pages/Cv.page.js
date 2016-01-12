@@ -1,10 +1,11 @@
-/** @jsx React.DOM */
+"use strict";
 //
 var React 		= require('react'),
 	ReactDOM 	= require('react-dom');
 //
 var RDCollect 	= require('../lib/RDCollect'),
-	RDConf 		= require('../lib/RDConfig');
+	RDConf 		= require('../lib/RDConfig'),
+	RDPage		= require('../lib/RDPage');
 //
 var CvList 		= require('../dom/list/ListCv.react');
 /**
@@ -12,31 +13,26 @@ var CvList 		= require('../dom/list/ListCv.react');
 *
 *
 */
-function CvPage (options) {
+class CvPage extends RDPage{
 	//
-	this.title = options.title || null;
-	//
-	this.collection =  new RDCollect({
-		url: RDConf.api.jobs.url
-	});
-}
-//
-CvPage.prototype.mount = function () {
-	//
-	var domCv = document.getElementById('devint-cv');
-
-	this.collection.retrieve().then(() => {
+	constructor (options) {
 		//
-		ReactDOM.render(<CvList cv={this.collection.flatten()} />, domCv);
-	});
-	
-}
-//
-CvPage.prototype.unmount = function () {
-	//
-	var domCv = document.getElementById('devint-cv');
-	//
-	ReactDOM.unmountComponentAtNode(domCv);
+		super(options);
+
+		this.collection =  new RDCollect({
+			url: RDConf.api.jobs.url
+		});
+	}
+
+	mount () {
+		//
+		this.collection.retrieve().then(() => {
+			//
+			ReactDOM.render(<CvList cv={this.collection.flatten()} />, this.outer);
+		});
+
+		this.postRender();
+	}
 }
 //
 module.exports = CvPage;

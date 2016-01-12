@@ -3,13 +3,16 @@
 var React = require('react'),
 	ReactDOM = require('react-dom');
 //
+var RDPage			= require('../lib/RDPage');
+//
 var LoginForm = require('../dom/form/LoginForm.react');
 //
 //
-class LoginPage {
+class LoginPage extends RDPage{
 	//
 	constructor (options) {
-		this.title = options.title || null;
+		//
+		super(options);
 	}
 	//
 	mount () {

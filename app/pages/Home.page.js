@@ -1,17 +1,17 @@
 "use strict";
 //
-var React = require('react'),
-	ReactDOM = require('react-dom');
+var React 			= require('react'),
+	ReactDOM 		= require('react-dom');
 //
-var HomeBtnActions = require('../dom/btn/BtnHomeActions.react');
+var RDPage			= require('../lib/RDPage');
+//
+var HomeBtnActions 	= require('../dom/btn/BtnHomeActions.react');
 
-class HomePage {
+class HomePage extends RDPage {
 	//
 	constructor (options) {
 		//
-		this.title = options.title || null;
-
-		this.outer = document.getElementById("devint-home");
+		super(options);
 	}
 	//
 	mount () {
@@ -19,18 +19,6 @@ class HomePage {
 		ReactDOM.render(<HomeBtnActions/>, this.outer);
 		
 		this.postRender();
-	}
-	//
-	postRender () {
-		//
-		setTimeout(function () {
-			this.outer.className = "page-outer is-loaded";
-		}.bind(this), 100);
-	}
-	//
-	unmount () {
-		//
-		ReactDOM.unmountComponentAtNode(this.outer);
 	}
 }
 //

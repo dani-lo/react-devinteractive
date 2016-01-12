@@ -2,9 +2,9 @@
 var React 		= require('react'),
 	ReactDOM 	= require('react-dom');
 //
-var RDHub	 	= require('../../lib/RDHub');
+var RDHub	 	= require('../lib/RDHub');
 
-var BtnHeaderActions = require('../btn/BtnHeaderActions.react');
+var BtnHeaderActions = require('../dom/btn/BtnHeaderActions.react');
 //
 var instance = null,
 	DevintHeader;

@@ -1,5 +1,4 @@
 /////////////////
-//var RDBridge = require("./RDBridge.js");
 "use strict";
 
 var Router = require("../util/router");
@@ -26,8 +25,6 @@ class RDHub {
 		// returning the user to the initial state
 		//Router.navigate();
 		this.currPageView = null;
-		//
-		this.listeners = {};
 	}
 
 	setCurrentPageView (pageView) {
@@ -42,19 +39,6 @@ class RDHub {
 		this.currPageView && this.currPageView.unmount();
 		
 		return this;
-	}
-	
-	registerListener (ev, action) {
-		//
-		this.listeners[ev] = action;
-	}
-	
-	invokeListener (ev, options) {
-		//
-		if (this.listeners[ev]) {
-			//
-			this.listeners[ev].call(null, options);
-		}
 	}
 }
 

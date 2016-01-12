@@ -1,6 +1,7 @@
 //
 var RDEvent = require("../../lib/RDEvent"),
-	RDHub	= require("../../lib/RDHub");
+	RDHub	= require("../../lib/RDHub"),
+	RDEvent	= require("../../lib/RDEvent");
 
 var React 		= require('react'),
 	classNames 	= require('classnames');
@@ -15,7 +16,7 @@ var BtnHeaderActions= React.createClass({
 	//
 	componentDidMount: function () {
 		//
-		RDHub.registerListener("onappnavigate", function (options) {
+		RDEvent.registerListener("onappnavigate", function (options) {
 			//
 			this.setState({activeBackBtn: options.path.indexOf("home") === -1});
 			

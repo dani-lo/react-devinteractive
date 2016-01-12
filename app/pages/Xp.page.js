@@ -4,7 +4,8 @@ var React 		= require('react'),
 	ReactDOM 	= require('react-dom');
 //
 var RDCollect 	= require('../lib/RDCollect'),
-	RDConf 		= require('../lib/RDConfig');
+	RDConf 		= require('../lib/RDConfig'),
+	RDPage		= require('../lib/RDPage');
 //
 var XpList 		= require('../dom/list/ListXp.react');
 /**
@@ -12,17 +13,15 @@ var XpList 		= require('../dom/list/ListXp.react');
 *
 *
 */
-class XpPage {
+class XpPage extends RDPage {
 
-	constructor () {
+	constructor (options) {
 		//
-		this.title = options.title || null;
+		super(options);
 		//
 		this.collection =  new RDCollect({
 			url: RDConf.api.xp.url
 		});
-
-		this.outer = document.getElementById("devint-xp");
 	}
 	//
 	mount () {
@@ -33,18 +32,6 @@ class XpPage {
 		});
 		
 		this.postRender();
-	}
-	//
-	postRender () {
-		//
-		setTimeout(function () {
-			this.outer.className = "page-outer is-loaded";
-		}.bind(this), 100);
-	}
-	//
-	unmount () {
-		//
-		ReactDOM.unmountComponentAtNode(this.outer);
 	}
 }
 //

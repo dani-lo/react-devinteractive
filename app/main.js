@@ -8,8 +8,25 @@
 		XpPage		= require("./pages/Xp.page"),
 		HomePage 	= require("./pages/Home.page");
 	//
-	var AppHeader	= require('./dom/widget/Header.widget');
+	var AppHeader	= require('./widget/Header.widget');
 	//
+	function loadAppPageView (pageView) {
+		//
+		var currPage = RDHub.getCurrentPageView();
+		//
+		RDHub.setCurrentPageView(pageView);
+
+		if (currPage !== null) {
+			//
+			currPage.unmount().then(function () {
+				//
+				pageView.mount();
+			});
+		} else {
+			//
+			pageView.mount();
+		}
+	}
 	function appDefaultRouteAction () {
 		//
 		console.log("DevInteractive default");
@@ -20,7 +37,8 @@
 		var pageLogin = new LoginPage({
 			title: "Dev Interactive Login Page"
 		});
-		pageLogin.mount();
+		
+		loadAppPageView(pageLogin);
 	}
 	//
 	function appHomeRouteAction () {
@@ -30,10 +48,7 @@
 			outer: document.getElementById("devint-home")
 		});
 
-		RDHub.unmountCurrentPageView()
-			 .setCurrentPageView(pageHome);
-
-		pageHome.mount();
+		loadAppPageView(pageHome);
 	}
 	//
 	function appCvRouteAction () {
@@ -43,10 +58,7 @@
 			outer: document.getElementById("devint-cv")
 		});
 
-		RDHub.unmountCurrentPageView()
-			 .setCurrentPageView(pageCv);
-
-		pageCv.mount();
+		loadAppPageView(pageCv);
 	}
 	//
 	function appExperienceRouteAction () {
@@ -56,15 +68,7 @@
 			outer: document.getElementById("devint-cv")
 		});
 
-		RDHub.unmountCurrentPageView()
-			 .setCurrentPageView(pageXp);
-
-		pageXp.mount();
-	}
-	//
-	function appDefaultRouteAction () {
-		//
-		console.log("DEFAULT");
+		loadAppPageView(pageXp);
 	}
 	// adding routes
 	RDHub.appRouter.setOnRouteChange(function (path) {
@@ -76,7 +80,7 @@
 					.add(/app\/home/, appHomeRouteAction)
 					.add(/app\/experience/, appExperienceRouteAction)
 					.add(/app\/cv/, appCvRouteAction)
-					.add(appDefaultRouteAction) // default
+					.add(appHomeRouteAction) // default
 					.check()
 					.listen();
 

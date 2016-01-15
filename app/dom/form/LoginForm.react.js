@@ -12,7 +12,7 @@ var	rdConf 		= require("../../lib/RDConfig"),
 	rdHub 		= require("../../lib/RDHub");
 
 var	LoginFields	= require('./fields/LoginFields.react'),
-	AppModal	= require('../widget/Modal.widget');
+	AppModal	= require('../../widget/Modal.widget');
 
 // Ideally, these form values would be saved in another
 // sort of persistence, like a Store via Flux pattern

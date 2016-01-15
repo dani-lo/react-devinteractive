@@ -17,13 +17,26 @@ class RDPage {
 	postRender () {
 		//
 		setTimeout(function () {
+			//
 			this.outer.className = "page-outer is-loaded";
-		}.bind(this), 100);
+		}.bind(this), 750);
 	}
 	//
 	unmount () {
 		//
-		ReactDOM.unmountComponentAtNode(this.outer);
+		this.outer.className = "page-outer is-unloaded";
+		//
+		var deferred = new Promise((resolve, reject) => {
+
+			setTimeout(()=> {
+				//
+				ReactDOM.unmountComponentAtNode(this.outer);
+
+				resolve({"unmount": "ok"});
+			}, 750);
+		});
+		//
+		return deferred;
 	}
 }
 

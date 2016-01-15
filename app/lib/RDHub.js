@@ -34,11 +34,9 @@ class RDHub {
 		return this;
 	}
 
-	unmountCurrentPageView () {
-
-		this.currPageView && this.currPageView.unmount();
-		
-		return this;
+	getCurrentPageView () {
+		//
+		return this.currPageView;
 	}
 }
 

@@ -20,7 +20,7 @@ var ItemXp = React.createClass({
 		var d = this.props.d;
 
 		return (
-			<li className="start">
+			<li className="itemstart">
 			<h2>{d.cname}</h2>
 			<h3>{d.cdesc}</h3>
 			<h3>{d.title} | <span>{d.date}</span></h3>
@@ -42,15 +42,28 @@ var ListXp = React.createClass({
 	render: function() {
 		//
 		var xp = this.props.xp,	
-			items = xp.map(function (dItem) {
-				return <ItemXp  d={dItem} />
-			});
-
+			itemsA = xp.map(function (dItem, i) {
+				if (i % 2 === 0) {
+					return <ItemXp  d={dItem} />
+				}
+			}),
+			itemsB = xp.map(function (dItem, i) {
+				if (i % 2 !== 0) {
+					return <ItemXp  d={dItem} />
+				}
+			})
+		
 		return (
-			<ul className="cv-list">
-				{items}
+			<div>
+			<ul className="cv-list split-list">
+				{itemsA}
 			</ul>
+			<ul className="cv-list  split-list">
+				{itemsB}
+			</ul>
+			</div>
 		);
+		
 	}
 });
 

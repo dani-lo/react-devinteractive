@@ -17,8 +17,18 @@ var ItemXp = React.createClass({
 	//
 	render: function() {
 		//
+		var d = this.props.d;
+
 		return (
-			<li className="start">{this.props.d.title}</li>
+			<li className="start">
+			<h2>{d.cname}</h2>
+			<h3>{d.cdesc}</h3>
+			<h3>{d.title} | <span>{d.date}</span></h3>
+			<h4>{d.tech}</h4>
+			<p>{d.description.map(function (item) {
+				return <span>{item}</span>
+			})}</p>
+			</li>
 		)
 	}
 });

@@ -24,7 +24,7 @@ var BtnHomeActions= React.createClass({
 		//
 		return (
 			<p className="home-btn">
-				<a className="btn-large" href="#_" onClick={this.goToCv}>See CV</a>
+				<a className="btn-large" href="#_" onClick={this.goToCv}>See Samples</a>
 				<a className="btn-large" href="#_" onClick={this.goToExperience}>See Experience</a>
 			</p>
 		);

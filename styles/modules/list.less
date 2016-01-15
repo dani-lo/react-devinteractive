@@ -1,4 +1,6 @@
 ul.cv-list {
+    width: 600px;
+	margin: 0 auto;
 	li {
 		padding: 24px;
 		margin: 24px;
@@ -22,23 +24,28 @@ ul.cv-list {
 	&.split-list {
 		float: left;
 		width: 48%;
-	
+
 	}
 	ul.item-img {
 
 		li {
 			display: inline-block;
-		    width: 279px;
 		    margin: 2px;
 		    padding: 0;
 		    border: 1px solid @color_grey_light;
 		    .opaque(0, 0);
 			.transit(opacity, 0.5s);
 			.t_delay(1s);
+			display: none;
+
+			&:first-child {
+				display: block;
+			}
 
 			img {
 				width: 100%;
 				height: auto;
+
 			}
 		}
 		

@@ -2,10 +2,21 @@ ul.cv-list {
 	li {
 		padding: 24px;
 		margin: 24px;
-		
-		border: 2px solid @color_black;
+		border: 1px solid @color_grey_lightish;
     	background: @color_white;
-		
+		.opaque(0, 0);
+		.transit(opacity, 0.5s);
+
+	    &.mounted {
+	    	.opaque(1, 100);
+
+	    	ul.item-img {
+
+				li {
+					.opaque(1, 100);
+			    }
+			}
+		}
 	}
 
 	ul.item-img {
@@ -15,7 +26,10 @@ ul.cv-list {
 		    width: 279px;
 		    margin: 2px;
 		    padding: 0;
-		    border: 1px solid @color_black;
+		    border: 1px solid @color_grey_light;
+		    .opaque(0, 0);
+			.transit(opacity, 0.5s);
+			.t_delay(1s);
 
 			img {
 				width: 100%;

@@ -1,5 +1,6 @@
 //
-var React = require('react');
+var React 		= require('react'),
+	ReactDOM 	= require('react-dom');
 //
 var ItemXp = React.createClass({
 	//
@@ -9,10 +10,15 @@ var ItemXp = React.createClass({
 		};
 	},
 	//
+	componentDidMount : function () {
+		//
+		ReactDOM.findDOMNode(this).classList.add('mounted');
+	},
+	//
 	render: function() {
 		//
 		return (
-			<li>{this.props.d.title}</li>
+			<li className="start">{this.props.d.title}</li>
 		)
 	}
 });

@@ -31,18 +31,14 @@ class RDCollect {
 	addDocument (doc) {
 		//
 		var useDoc;
-
+		
 		if (doc instanceof Backbone.Model) {
 			useDoc = doc;
 		} else {
 			useDoc = this.createDocument(doc);
 		}
 		//
-		this.dataset.add(useDoc);
-
-		console.log(this.dataset.get(useDoc))
-
-		return this.dataset.get(useDoc).get("id");
+		return this.dataset.add(useDoc);
 	}
 	//
 	retrieve () {

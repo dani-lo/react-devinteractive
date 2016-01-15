@@ -16,7 +16,7 @@ var glob = require('glob');
 var livereload = require('gulp-livereload');
 var jasminePhantomJs = require('gulp-jasmine2-phantomjs');
 var connect = require('gulp-connect');
-
+var argv = require('yargs').argv;
 // External dependencies you do not want to rebundle while developing,
 // but include in your application deployment
 var dependencies = [
@@ -124,6 +124,19 @@ var browserifyTask = function (options) {
   }
 
 }
+
+//gulp.task('copy', ['clean'], function () {
+//    return gulp.src(['some/other/folders/src/public/**/*', 'some/other/folders/src/vendor/**/*'], {
+//        base: 'other'
+//    }).pipe(gulp.dest('build'));
+//});
+
+var copyTask = function (options) {
+  //
+  gulp.src(['./assets/**/*'], {
+        base: 'assets'
+    }).pipe(gulp.dest(options.dest));
+}
 //
 var cssTask = function (options) {
   
@@ -156,6 +169,7 @@ var cssTask = function (options) {
 
 // Starts our development workflow
 gulp.task('default', function () {
+  //
   livereload.listen();
 
   browserifyTask({
@@ -187,6 +201,20 @@ gulp.task('deploy', function () {
   });
 });
 
+//
+gulp.task('copyimg', function () {
+    //
+    var dest = './dist';
+
+    if (argv.d) {
+      //
+      dest = './build';
+    }
+
+    copyTask({
+      dest: dest
+    });
+});
 gulp.task('test', function () {
     return gulp.src('./build/testrunner-phantomjs.html').pipe(jasminePhantomJs());
 });
